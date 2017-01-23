@@ -59,9 +59,6 @@ import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
 import cyanogenmod.providers.CMSettings;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
 import cyanogenmod.hardware.CMHardwareManager;
 
 public class CyanogenSettingsPage extends SetupPage {

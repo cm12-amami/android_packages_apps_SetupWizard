@@ -40,8 +40,7 @@ import com.android.internal.os.IKillSwitchService;
 import com.android.internal.widget.LockPatternUtils;
 import com.cyanogenmod.setupwizard.SetupWizardApp;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import org.cyanogenmod.internal.util.PackageManagerUtils;
 
 public class SetupWizardUtils {
 
@@ -191,8 +190,7 @@ public class SetupWizardUtils {
     }
 
     public static boolean hasGMS(Context context) {
-        return GooglePlayServicesUtil.isGooglePlayServicesAvailable(context) !=
-                ConnectionResult.SERVICE_MISSING;
+        return PackageManagerUtils.isAppInstalled(context, "com.google.android.gms");
     }
 
     public static boolean accountExists(Context context, String accountType) {
