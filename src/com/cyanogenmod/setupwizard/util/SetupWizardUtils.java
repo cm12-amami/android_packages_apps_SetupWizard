@@ -20,6 +20,7 @@ import android.accounts.AccountManager;
 import android.app.AppGlobals;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.ComponentInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -40,7 +41,7 @@ import com.android.internal.os.IKillSwitchService;
 import com.android.internal.widget.LockPatternUtils;
 import com.cyanogenmod.setupwizard.SetupWizardApp;
 
-import org.cyanogenmod.internal.util.PackageManagerUtils;
+
 
 public class SetupWizardUtils {
 
@@ -190,7 +191,14 @@ public class SetupWizardUtils {
     }
 
     public static boolean hasGMS(Context context) {
-        return PackageManagerUtils.isAppInstalled(context, "com.google.android.gms");
+        final PackageManager packageManager = context.getPackageManager();
+        ApplicationInfo info;
+        try {
+            info = packageManager.getApplicationInfo("com.google.android.gms", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            info = null;
+        }
+        return info != null;
     }
 
     public static boolean accountExists(Context context, String accountType) {
