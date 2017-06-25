@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">设置备用解锁方式</string>
   <string name="fingerprint_setup_add_fingerprint">添加您的指纹</string>
   <string name="fingerprint_setup_screen_lock_setup">设置屏幕锁定</string>
+  <!-- Privacy Guard ZH -->
+  <string name="services_os_privacy_guard"><b>启用隐私防护</b>使新安装的应用不能获取您的联系人、信息或通话记录等个人数据</string>
 </resources>

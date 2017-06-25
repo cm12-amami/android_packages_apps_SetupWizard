@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">Skonfigurować drugą metodę odblokowania</string>
   <string name="fingerprint_setup_add_fingerprint">Dodać swój odcisk palca</string>
   <string name="fingerprint_setup_screen_lock_setup">Skonfigurować blokadę ekranu</string>
+  <!-- Privacy Guard PL -->
+  <string name="services_os_privacy_guard"><b>Włącz ochronę prywatności</b> aby twoje dane osobiste, takie jak kontakty, wiadomości lub rejestr połączeń nie były dostępne dla nowo zainstalowanych aplikacji</string>
 </resources>

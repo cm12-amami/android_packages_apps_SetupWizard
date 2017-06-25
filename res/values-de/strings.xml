@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">Einrichtung einer sekundären Methode zum Entsperren</string>
   <string name="fingerprint_setup_add_fingerprint">Fügen Sie Ihren Fingerabdruck hinzu.</string>
   <string name="fingerprint_setup_screen_lock_setup">Die Bildschirmsperre einrichten</string>
+  <!-- Privacy Guard DE -->
+  <string name="services_os_privacy_guard"><b>Aktivieren Sie den Datenschutz</b>, um Ihre persönlichen Daten wie Kontakte, Nachrichten oder Anrufe nicht für neu installierte Anwendungen verfügbar zu machen</string>
 </resources>

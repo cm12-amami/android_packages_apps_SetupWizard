@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">Configurer une méthode de déblocage secondaire</string>
   <string name="fingerprint_setup_add_fingerprint">Ajouter votre empreinte digitale</string>
   <string name="fingerprint_setup_screen_lock_setup">Configurer le verrouillage de l\'écran</string>
+  <!-- Privacy Guard FR -->
+  <string name="services_os_privacy_guard"><b>Activer la protection des données</b> pour que vos données personnelles comme les contacts, messages ou les journaux d\'appels ne soient pas disponibles pour les applications nouvellement installées</string>
 </resources>

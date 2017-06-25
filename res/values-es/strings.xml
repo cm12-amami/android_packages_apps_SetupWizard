@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">Establecer un método secundario de desbloqueo</string>
   <string name="fingerprint_setup_add_fingerprint">Añade tu huella digital</string>
   <string name="fingerprint_setup_screen_lock_setup">Ajustes de pantalla de bloqueo</string>
+  <!-- Privacy Guard ES -->
+  <string name="services_os_privacy_guard"><b>Habilitar Privacy guard</b> para sus datos personales como contactos, mensajes o registros de llamadas no está disponible para aplicaciones recién instaladas</string>
 </resources>

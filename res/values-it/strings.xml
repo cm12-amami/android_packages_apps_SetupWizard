@@ -78,4 +78,6 @@
   <string name="fingerprint_setup_backup_lock_method">Impostare un metodo di sblocco secondario</string>
   <string name="fingerprint_setup_add_fingerprint">Aggiungere un\'impronta</string>
   <string name="fingerprint_setup_screen_lock_setup">Imposta un blocco schermo</string>
+  <!-- Privacy Guard IT -->
+  <string name="services_os_privacy_guard"><b>Attiva Privacy guard</b> per rendere inaccessibili i dati personali come contatti, messaggi o il registro delle chiamate alle nuove app installate</string>
 </resources>

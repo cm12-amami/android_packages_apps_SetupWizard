@@ -65,12 +65,12 @@ public class CyanogenSettingsPage extends SetupPage {
 
     public static final String TAG = "CyanogenSettingsPage";
 
-    public static final String KEY_SEND_METRICS = "send_metrics";
     public static final String KEY_ENABLE_NAV_KEYS = "enable_nav_keys";
     public static final String KEY_APPLY_DEFAULT_THEME = "apply_default_theme";
 
-    public static final String SETTING_METRICS = "settings.cyanogen.allow_metrics";
     public static final String PRIVACY_POLICY_URI = "https://cyngn.com/oobe-legal?hideHeader=1";
+
+    public static final String KEY_PRIVACY_GUARD = "privacy_guard_default";
 
     public CyanogenSettingsPage(Context context, SetupDataCallbacks callbacks) {
         super(context, callbacks);
@@ -146,18 +146,15 @@ public class CyanogenSettingsPage extends SetupPage {
             }
         });
         handleEnableMetrics();
+        handlePrivacyGuard();
         handleDefaultThemeSetup();
         handleDefaultLockscreenSetup();
     }
 
     private void handleEnableMetrics() {
-        Bundle privacyData = getData();
-        if (privacyData != null
-                && privacyData.containsKey(KEY_SEND_METRICS)) {
-            CMSettings.Secure.putInt(mContext.getContentResolver(),
-                    CMSettings.Secure.STATS_COLLECTION, privacyData.getBoolean(KEY_SEND_METRICS)
-                            ? 1 : 0);
-        }
+        /* ALWAYS switch OFF ! */
+        CMSettings.Secure.putInt(mContext.getContentResolver(),
+                                 CMSettings.Secure.STATS_COLLECTION, 0);
     }
 
     private void handleDefaultThemeSetup() {
@@ -174,6 +171,14 @@ public class CyanogenSettingsPage extends SetupPage {
 
         } else {
             getCallbacks().finishSetup();
+        }
+    }
+
+    private void handlePrivacyGuard() {
+        Bundle mPrivacyData = getData();
+        if (mPrivacyData != null && mPrivacyData.containsKey(KEY_PRIVACY_GUARD)) {
+            CMSettings.Secure.putInt(mContext.getContentResolver(), KEY_PRIVACY_GUARD,
+                    mPrivacyData.getBoolean(KEY_PRIVACY_GUARD) ? 1 : 0);
         }
     }
 
@@ -223,25 +228,16 @@ public class CyanogenSettingsPage extends SetupPage {
         private View mKillSwitchView;
         private TextView mKillSwitchTitle;
         private ImageView mKillSwitchStatus;
-        private View mMetricsRow;
         private View mDefaultThemeRow;
         private View mNavKeysRow;
-        private CheckBox mMetrics;
+        private View mPrivacyGuardRow;
         private CheckBox mDefaultTheme;
         private CheckBox mNavKeys;
+        private CheckBox mPrivacyGuard;
 
         private boolean mHideNavKeysRow = false;
         private boolean mHideThemeRow = false;
 
-
-        private View.OnClickListener mMetricsClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean checked = !mMetrics.isChecked();
-                mMetrics.setChecked(checked);
-                mPage.getData().putBoolean(KEY_SEND_METRICS, checked);
-            }
-        };
 
         private View.OnClickListener mDefaultThemeClickListener = new View.OnClickListener() {
             @Override
@@ -258,6 +254,15 @@ public class CyanogenSettingsPage extends SetupPage {
                 boolean checked = !mNavKeys.isChecked();
                 mNavKeys.setChecked(checked);
                 mPage.getData().putBoolean(KEY_ENABLE_NAV_KEYS, checked);
+            }
+        };
+
+        private View.OnClickListener mPrivacyGuardClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean checked = !mPrivacyGuard.isChecked();
+                mPrivacyGuard.setChecked(checked);
+                mPage.getData().putBoolean(KEY_PRIVACY_GUARD, checked);
             }
         };
 
@@ -278,12 +283,6 @@ public class CyanogenSettingsPage extends SetupPage {
                     }
                 }
             };
-            ss.setSpan(clickableSpan,
-                    policySummary.length() - privacy_policy.length() - 1,
-                    policySummary.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView privacyPolicy = (TextView) mRootView.findViewById(R.id.privacy_policy);
-            privacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
-            privacyPolicy.setText(ss);
 
             mKillSwitchView = mRootView.findViewById(R.id.killswitch);
             mKillSwitchTitle = (TextView)mRootView.findViewById(R.id.killswitch_title);
@@ -299,19 +298,6 @@ public class CyanogenSettingsPage extends SetupPage {
                     mKillSwitchStatus.setImageResource(R.drawable.cross);
                 }
             }
-
-            mMetricsRow = mRootView.findViewById(R.id.metrics);
-            mMetricsRow.setOnClickListener(mMetricsClickListener);
-            String metricsHelpImproveCM =
-                    getString(R.string.services_help_improve_cm, getString(R.string.os_name));
-            String metricsSummary = getString(R.string.services_metrics_label,
-                    metricsHelpImproveCM, getString(R.string.os_name));
-            final SpannableStringBuilder metricsSpan = new SpannableStringBuilder(metricsSummary);
-            metricsSpan.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-                    0, metricsHelpImproveCM.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView metrics = (TextView) mRootView.findViewById(R.id.enable_metrics_summary);
-            metrics.setText(metricsSpan);
-            mMetrics = (CheckBox) mRootView.findViewById(R.id.enable_metrics_checkbox);
 
             mDefaultThemeRow = mRootView.findViewById(R.id.theme);
             mHideThemeRow = hideThemeSwitch(getActivity());
@@ -350,6 +336,12 @@ public class CyanogenSettingsPage extends SetupPage {
                         isKeyDisablerActive(getActivity());
                 mNavKeys.setChecked(navKeysDisabled);
             }
+
+            mPrivacyGuardRow = mRootView.findViewById(R.id.privacy_guard);
+            mPrivacyGuardRow.setOnClickListener(mPrivacyGuardClickListener);
+            mPrivacyGuard = (CheckBox) mRootView.findViewById(R.id.privacy_guard_checkbox);
+            mPrivacyGuard.setChecked(CMSettings.Secure.getInt(getActivity().getContentResolver(),
+                    KEY_PRIVACY_GUARD, 0) == 1);
         }
 
         @Override
@@ -366,12 +358,6 @@ public class CyanogenSettingsPage extends SetupPage {
         }
 
         private void updateMetricsOption() {
-            final Bundle myPageBundle = mPage.getData();
-            boolean metricsChecked =
-                    !myPageBundle.containsKey(KEY_SEND_METRICS) || myPageBundle
-                            .getBoolean(KEY_SEND_METRICS);
-            mMetrics.setChecked(metricsChecked);
-            myPageBundle.putBoolean(KEY_SEND_METRICS, metricsChecked);
         }
 
         private void updateThemeOption() {
