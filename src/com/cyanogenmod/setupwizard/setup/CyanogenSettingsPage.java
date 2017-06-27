@@ -146,9 +146,9 @@ public class CyanogenSettingsPage extends SetupPage {
             }
         });
         handleEnableMetrics();
-        handlePrivacyGuard();
         handleDefaultThemeSetup();
         handleDefaultLockscreenSetup();
+        handlePrivacyGuard();
     }
 
     private void handleEnableMetrics() {
@@ -175,10 +175,10 @@ public class CyanogenSettingsPage extends SetupPage {
     }
 
     private void handlePrivacyGuard() {
-        Bundle mPrivacyData = getData();
-        if (mPrivacyData != null && mPrivacyData.containsKey(KEY_PRIVACY_GUARD)) {
-            CMSettings.Secure.putInt(mContext.getContentResolver(), KEY_PRIVACY_GUARD,
-                    mPrivacyData.getBoolean(KEY_PRIVACY_GUARD) ? 1 : 0);
+        Bundle privacyData = getData();
+        if (privacyData != null && privacyData.containsKey(KEY_PRIVACY_GUARD)) {
+            Settings.Secure.putInt(mContext.getContentResolver(), KEY_PRIVACY_GUARD,
+                    privacyData.getBoolean(KEY_PRIVACY_GUARD) ? 1 : 0); 
         }
     }
 
@@ -353,11 +353,19 @@ public class CyanogenSettingsPage extends SetupPage {
         public void onResume() {
             super.onResume();
             updateDisableNavkeysOption();
-            updateMetricsOption();
             updateThemeOption();
+            updatePrivacyGuardOption();
         }
 
-        private void updateMetricsOption() {
+        private void updatePrivacyGuardOption() {
+            final Bundle myPageBundle = mPage.getData();
+            boolean enabled = CMSettings.Secure.getInt(getActivity().getContentResolver(),
+                              KEY_PRIVACY_GUARD, 0) != 0;
+            boolean checked = myPageBundle.containsKey(KEY_PRIVACY_GUARD) ?
+                              myPageBundle.getBoolean(KEY_PRIVACY_GUARD) :
+                              enabled;
+            mPrivacyGuard.setChecked(checked);
+            myPageBundle.putBoolean(KEY_PRIVACY_GUARD, checked);
         }
 
         private void updateThemeOption() {

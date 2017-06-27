@@ -107,7 +107,7 @@
                         android:layout_gravity="top"
                         android:layout_marginTop="5dp"
                         android:duplicateParentState="true"
-                        android:clickable="false" />
+                        android:clickable="false"/>
 
                     <TextView
                         android:id="@+id/privacy_guard_summary"
@@ -121,6 +121,7 @@
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
                         android:text="@string/services_os_privacy_guard"/>
+
                 </LinearLayout>
 
                 <!-- Whether or not to enable default theme -->
