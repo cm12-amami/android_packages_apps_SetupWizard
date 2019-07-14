@@ -54,7 +54,7 @@
   <string name="yes">হয়</string>
   <string name="data_sim_name">SIM <xliff:g id="sub">%d</xliff:g> - <xliff:g id="name">%s</xliff:g></string>
   <string name="emergency_call">জৰুৰীকালীন কল</string>
-  <string name="setup_services">Cyanogen বৈশিষ্ট্যবোৰ</string>
+  <string name="setup_services">LineageOS বৈশিষ্ট্যবোৰ</string>
   <string name="services_explanation" product="tablet">এই সেৱাবোৰে আপোনাৰ টেবলেট কম্পিউটাৰৰ সক্ষমতা সম্প্ৰসাৰিত কৰিবলৈ কাম কৰে। ডাটা Cyanogen ৰ <xliff:g id="name" example="Privacy Policy">%s</xliff:g> অনুযায়ী ব্যৱহাৰ কৰা হ\'ব।</string>
   <string name="services_explanation" product="default">এই সেৱাবোৰে আপোনাৰ ফোনৰ সক্ষমতা সম্প্ৰসাৰিত কৰিবলৈ কাম কৰে। ডাটা Cyanogen ৰ <xliff:g id="name" example="Privacy Policy">%s</xliff:g> অনুযায়ী ব্যৱহাৰ কৰা হ\'ব।</string>
   <string name="services_privacy_policy">গোপনীয়তা নীতি</string>

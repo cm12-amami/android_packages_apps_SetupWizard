@@ -54,7 +54,7 @@
   <string name="yes">Có</string>
   <string name="data_sim_name">SIM <xliff:g id="sub">%d</xliff:g> - <xliff:g id="name">%s</xliff:g></string>
   <string name="emergency_call">Cuộc gọi khẩn cấp</string>
-  <string name="setup_services">Tính năng Cyanogen</string>
+  <string name="setup_services">Tính năng LineageOS</string>
   <string name="services_explanation" product="tablet">Những dịch vụ này giúp mở rộng khả năng của máy tính bảng của bạn. Dữ liệu sẽ được sử dụng theo <xliff:g id="name" example="Privacy Policy">%s</xliff:g> của Cyanogen.</string>
   <string name="services_explanation" product="default">Những dịch vụ này giúp mở rộng khả năng của điện thoại của bạn. Dữ liệu sẽ được sử dụng theo <xliff:g id="name" example="Privacy Policy">%s</xliff:g> của Cyanogen.</string>
   <string name="services_privacy_policy">Chính sách về quyền riêng tư</string>

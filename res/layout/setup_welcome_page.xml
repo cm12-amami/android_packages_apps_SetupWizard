@@ -19,7 +19,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <include layout="@layout/logo_header" />
+    <ImageView
+        android:id="@+id/brand_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/content_margin_left"/>
 
     <RelativeLayout android:id="@+id/page"
                  android:layout_width="match_parent"

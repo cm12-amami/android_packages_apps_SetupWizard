@@ -54,7 +54,7 @@
   <string name="yes">Ja</string>
   <string name="data_sim_name">SIM <xliff:g id="sub">%d</xliff:g> - <xliff:g id="name">%s</xliff:g></string>
   <string name="emergency_call">Noodoproep</string>
-  <string name="setup_services">Cyanogen funksies</string>
+  <string name="setup_services">LineageOS funksies</string>
   <string name="services_explanation" product="tablet">Hierdie dienste werk vir jou om die vermoëns van jou tablet uit te brei. Data sal in ooreenkomstig gebruik word met Cyanogen\'s <xliff:g id="name" example="Privacy Policy">%s</xliff:g>.</string>
   <string name="services_explanation" product="default">Hierdie dienste werk vir jou om die vermoëns van jou foon uit te brei. Data sal in ooreenkomstig gebruik word met Cyanogen\'s <xliff:g id="name" example="Privacy Policy">%s</xliff:g>.</string>
   <string name="services_privacy_policy">Privaatheid beleid</string>
